@@ -1,0 +1,112 @@
+Tue 1 Sep:
+•Added update log
+•Automatically sets cherrypy.server.socket_host to own ip
+•Started work on link owners:
+    •added owner column to urls table
+    •added owners table (columns: name, password)
+    •added all_owners() to utils
+
+
+Wed 2 Sep:
+•Improved logging
+•Discovered a glitch where when accessing a file while it is being written to corrupts the text. Fixed by switching open mode for r+ to a.
+•Continued work on owners:
+    •did stuff
+    •new_url adds owner to link row
+
+Sat 5 sep:
+•Improved documentation a little bit
+•Watched way too much youtube and did way too few productive things
+•Continued work on owners:
+    •added all_owner_urls which lists all urls belonging to an owner and requires a password.
+    •added owner functionality to new_url !!!NOT EVEN CLOSE TO BEING DONE!!!
+
+Sun 6 sep:
+•Continued work on owners:
+    •finished new_url owner functionality
+    •updated add url form
+    •added new_owner page
+    •added a lot of bugs
+    •fixed above-mentioned bugs
+•overall bug fixes
+
+Mon 7 sep:
+•Continued work on owners:
+    •made register form
+•Organised functions: all funcs, pages are split up into sections, and almost all exposed page have much less code; it is now stored in unexposed funcs. 
+
+
+Tue 8 sep:
+•Improved logging (more improvement needed)
+•Improved logging func (now adds ctime() to all entries)
+
+Wed 9 Sep:
+•Fixed bug in ses_log()
+•Improved logging (improvement needed)
+
+Sat 12 sep:
+•added QR function
+•removed some lines after return in add_uel() (no idea how they got there)
+•Improved logging (still need to improve in /ut)
+•did NOT put qr in main page
+
+Sun 13 sep:
+•improved logging (more improvement needed)
+
+Mon 14 Sep:
+•Learned how https ssl works
+•added ssl support (only self-signed certificate right now!)
+
+Wed 16 sep:
+•Forgot to update log
+•began work on web pages
+
+Thu 7 sep:
+•continued work on web pages
+•split code into separate files 
+•Fixed bugs
+•TODO: fix line 75 and 36 in main.py
+
+Fri 18 sep:
+•continued work on web pages
+•fixed bugs
+•added 'short url taken' page
+•all long urls are now stored in base64 (before this update, if a url had parameters, it would glitch out the shortener)
+•TODO: Fix base64 of md5 function (it seems to be encoding the hash of the base64 encoded url, not the url itself)
+•TODO: make sure ut/all_urls decodes the stored urls from base64
+
+Thu 24 sep:
+•Forgot to update log again.
+•split homepage and explanation and add_url form to different pages.
+•TODO: fix inconsistency with pages having %s AND html to embed data
+•TODO: make separate pages for all /info messages
+•TODO: replace /info with static files
+
+Sun 27 sep (best update in the history of web development):
+•TODO: add "owner name taken" to new_owner func
+•TODO: rename "unstatic.py" to something comprehendible
+•TODO: Fix some other stuff
+•TODO: Fix bug where https urls will get shortened to http urls
+•TODO: Fix register function
+•Broke register function
+•Added bugs
+•Did stuff
+
+Mon 28 sep:
+•Fixed regster func.
+•did stuff
+•Fixed TODO 1 from last update
+•Fixed TOFO 2 and 3 from the update before the last one.
+
+Wed 30 sep:
+•Kind of fixed TODO 4 from update before the last one
+•TODO: fix "url name taken" func. (Yes, I know, I am great at breaking things)
+
+Thu 1 oct:
+•Fixed previous TODO
+
+Sat 3 oct:
+•Put whatisthis and homepage back together.
+
+Sun 4 oct:
+•Added random background gradient generator. Yay! (code stolen from https://jsfiddle.net/minimamente/o0fh1o0a/)

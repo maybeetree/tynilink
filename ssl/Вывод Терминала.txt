@@ -1,0 +1,32 @@
+RedMacBookAir:ssl kita$ openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+Generating RSA private key, 2048 bit long modulus
+...............+++
+.............+++
+e is 65537 (0x10001)
+RedMacBookAir:ssl kita$ openssl rsa -passin pass:x -in server.pass.key -out server.key
+writing RSA key
+RedMacBookAir:ssl kita$ openssl req -new -key server.key -out server.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:NL
+State or Province Name (full name) [Some-State]:Noord-holland
+Locality Name (eg, city) []:Amstelveen
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:nocompany
+Organizational Unit Name (eg, section) []:nounitname
+Common Name (e.g. server FQDN or YOUR name) []:maybetree
+Email Address []:no@email.com
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:barsik
+An optional company name []:nooptionalname
+RedMacBookAir:ssl kita$ 
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+Signature ok
+subject=/C=NL/ST=Noord-holland/L=Amstelveen/O=nocompany/OU=nounitname/CN=maybetree/emailAddress=no@email.com
+Getting Private key

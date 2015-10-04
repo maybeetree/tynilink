@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/whatisthis.css">
+    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/create_url.css">
+    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/submit_button.css">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://localhost/static/js/rnd_grad.js" type="text/javascript" charset="utf-8"></script>
+    <script language="javascript" src="https://localhost/static/js/embed.js"></script>
+    <script language="javascript" src="https://localhost/static/js/show_more.js"></script>
+    <title>Tyni.link</title>
+  </head>
+  <body onload="clientSideInclude('makeurl_form', 'https://localhost/static/create_url.html'); runmain(); ">
+      <div id="hero">
+        <div class="header">
+          <h1> Tyni.link </h1>
+          <h4> The most advanced url shortener of 2015 </h4>
+          <a href="#content", title="THIS IS SPARTAAAAAAAA!", id="whatisthis">What is this?</a>
+        </div>
+        <span id="makeurl_form">
+        </span>
+      </div>
+        <div id="content">
+          <div id="article"> <br>
+            <br>
+            <article>
+              <h3>What is this?</h3>
+              <p>Tyni.link is a service that lets you shorten long urls like
+                "https://docs.google.com/document/d/1su0sOYptfFfMlxnDsXpCfrtwvnPby4Gop_rX4haHSTw/edit"
+                to short, sweet urls like tyni.link?d=MyHome. Unlike most
+                shorteners, which produce urls similar to goo.gl/zf0I5,
+                Tyni.link lets you choose your own, readable, urls, like the one
+                mentioned above. It also provides different functions like
+                tracking, link monetization, QR code generation and more.</p>
+              <h3>Why is it better than others?</h3>
+              <p>Have you ever been in a situation where you have to write down
+                a link on paper (school project citation, notes, etc.)? Than you
+                would understand how unhandy it is to write randomly generated
+                codes like goo.gl/zf0I5: l's look like I's, 0's look like O's,
+                etc. Also the same happens when you try to say the link to
+                someone: random codes are just too easy to forget. With
+                tyni.link YOU make the code, so you'll never have problems like
+                that again.</p>
+            </article>
+            <br>
+            <br>
+
+            <a href="#wrapper">top</a> </div>
+        </div>
+        <footer class="item">
+          <p> I am the footer, and you have scroll down to see me.</p>
+      </footer>
+    
+  </body>
+</html>

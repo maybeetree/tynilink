@@ -1,0 +1,4 @@
+[/auth_link]
+tools.auth_basic.on = True
+tools.auth_basic.realm = 'This link requires a login and password'
+tools.auth_basic.checkpassword = main.validate_password

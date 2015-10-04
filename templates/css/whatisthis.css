@@ -1,0 +1,37 @@
+#hero{
+  background-size:cover;
+  height:100vh;
+  text-align: center;
+}
+
+.header{
+  position:absolute;
+  top:18%;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  font-size:36px;
+  -ms-transform: translate(0,-50%); /* IE 9 */
+    -webkit-transform: translate(0,-50%); /* Safari */
+    transform: translate(0,-50%);  
+  background-color: rgba(0,0,100,0.5);
+}
+
+#content{
+  width:100%;
+}
+
+h1 {color: #FFD700; }
+
+html {font-family: Copperplate Gothic Light; }
+
+
+article p {font-family: Arial; }
+
+#article {background-color: #ddd; }
+article {margin-top: 50px; margin-left: 50px; }
+
+#whatisthis {
+font-size: 22px;
+color: rgb(130,130,255);
+}
