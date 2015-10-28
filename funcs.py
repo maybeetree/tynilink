@@ -1,7 +1,7 @@
 import MySQLdb as mdb
-import StringIO
-import qrcode
-import hashlib, base64
+import hashlib, base64, httplib, qrcode, StringIO
+from captcha.image import ImageCaptcha
+from loremipsum import get_sentences
 
 import cherrypy
 from cherrypy.lib import cptools
@@ -10,12 +10,30 @@ from cherrypy.lib.static import serve_fileobj
 import socket
 
 from time import sleep, ctime
-from random import randint
+from random import randint, choice
 import sys, re, os
+
 
 import shortener_conf as cnf
 
 '''these are unexposed functions used by the shortener'''
+
+def newcaptcha(text = 'test', fontspath='captcha/fonts/'):
+    fonts = []
+    for x in os.listdir(fontspath):
+        if x.split('.')[-1] == 'ttf':#if font file
+            fonts.append(fontspath+x)
+                     
+    img = StringIO.StringIO()
+    
+    image = ImageCaptcha(fonts=fonts)
+    data = image.generate(text)
+    image.write(text, img)
+
+    contents = img.getvalue()
+    img.close()
+
+    return contents
 
 def special_match(strg, search=re.compile(cnf.allowed_chars).search):
     return not bool(search(strg))   #test if string has invalid chars
@@ -35,7 +53,7 @@ def ses_log(func, text, logfile = 'log.txt'):
     #    f.write(func + ' ' + text + '\n')
 
 
-def uuid(text):  #please ignore this function
+def uuid(text):  #--------->  please ignore this function  <---------
     return base64.b64encode(  #encode into base 64
         hashlib.md5('hello')   #md5
         .digest()   #get md5
@@ -45,21 +63,21 @@ def h6(w):  #stole this from http://www.peterbe.com/plog/best-hashing-function-i
     h = hashlib.md5(w)
     return h.digest().encode('base64')[:6]
 
-def new_owner(self,name,password):
-        self.cur.execute("select name from owners where name = '%s'" %
-                        name)
-        if self.cur.fetchone():   #if tuple is not empty
-            ses_log('[new_owner]','owner taken')
-            return 'owner_taken'
+def new_owner(self,name,password,email):
+    self.cur.execute("select name from owners where name = '%s'" %
+                    name)
+    if self.cur.fetchone():   #if tuple is not empty
+        ses_log('[new_owner]','owner taken')
+        return 'owner_taken'
         
-        self.cur.execute("INSERT INTO owners(name,password) \
-VALUES('%s','%s')" % (name,password))
-        self.con.commit()
+    self.cur.execute("INSERT INTO owners(name,password,email) \
+VALUES('%s','%s','%s')" % (name,password,email))
+    self.con.commit()
 
-        ses_log('[new owner]', 'added owner w\ name: %s, pass: %s' %
-                (name,password))
+    ses_log('[new owner]', 'added owner w\ name: %s, pass: %s' %
+            (name,password))
 
-        return "created_owner"
+    return "created_owner"
 
 def new_qr(url):
     '''generates qr code from link'''
@@ -84,21 +102,32 @@ def geturl(self,url):
         self.cur.execute("select longurl,pass,shorturl \
 from urls where shorturl = '%s'" % url)   #select link
         ret = self.cur.fetchone()
+        
+        if not ret:   #if link not found
+            return '/fourofour'
 
         ses_log('[processign url]',
                     'longurl: %s, password: %s, shorturl: %s' % ret)
         #print(ret)
             
         if ret[1] == '' or ret[1] == None:   #no password
-            url = "/ads?destination=%s" % base64.b64decode(ret[0])
             ses_log('[processing url]', 'link is NOT passworded')
+            return "/ads?destination=%s" % ret[0]#this is really confusing:
+        #ret[0] is the long url, and it is already encoded in base64, becuase
+        #if the url contains params, it's gonna mess everything up.
+        #ret[2] (seen below) is the short url being passed to the
+        #auth_link page. We pass the short url instead of long so the person
+        #trying to acess it woudn't see
+        #it in the url bar if they don't know the password. We do not need to
+        #encode the short url becsue it does not contain anything dangerous.
         else:
             #sending shorturl, so longurl is not visible in url bar
             #print('hd ', ret[1])
             link_password = ret[1]   #for the validate_password()
             ses_log('[processing url]', 'link passworded')
+            #print(ret[2])
                 
-            url = "/auth_link?dest=%s" % base64.b64decode(ret[2])
+            return "/auth_link?dest=%s" % ret[2]
         #return str(ret)
         #raise cherrypy.HTTPRedirect("/ads?destination=%s" % longurl)
     else:
@@ -106,9 +135,7 @@ from urls where shorturl = '%s'" % url)   #select link
         ses_log('[processing url]',
                 'no url param recieved, redirecting to homepage')
 
-        url = '/static/homepage.html'
-            
-    return url
+        return '/static/homepage.html'
 
 def new_url(self, short, long, password = None,
             owner = '', owner_pass = ''):
@@ -118,7 +145,7 @@ def new_url(self, short, long, password = None,
     ses_log('[new_url]', 'trying to register %s as %s with password %s \
 owner %s, owner pass %s' %
             (long, short, password, owner, owner_pass))
-
+    
     if not short:   #if short=None or empty str, make url to hash
         short = h6(long)
 
@@ -127,7 +154,7 @@ owner %s, owner pass %s' %
 
     if self.cur.fetchone():   #if tuple is not empty/ url taken
         ses_log('[new_url]','url taken')
-        return 'static/info/link/url_taken.html'
+        return ('static/info/link/url_taken.html', short)
 
     #if long[0:4] == 'http' or long[0:4] == 'https':
     #    long = long[8:]   #if link has http:// prefix, remove it
@@ -141,7 +168,7 @@ owner %s, owner pass %s' %
             
         if actual_password == None:
             ses_log('[new_url]', 'Unknow user')
-            return 'static/info/link/unknown_user.html'   #if user not found
+            return ('static/info/link/unknown_user.html', short)#if user not found
                 
         if actual_password[0] == owner_pass:  #if pass correct
             ses_log('[new_url]', 'pass correct')
@@ -149,10 +176,30 @@ owner %s, owner pass %s' %
 VALUES('%s','%s','%s','%s')"
                                 % (short, long, password, owner)) #insert link
             self.con.commit()
-            return 'display/sucsess'
+            return ('display/sucsess', short)
         else:
             ses_log('[new_url]', 'pass wrong')
-            return 'static/info/link/wrong_password.html'
+            return ('static/info/link/wrong_password.html', short)
+
+def log_visit(ip,obj,url,request=None):
+    info = httplib.HTTPConnection('freegeoip.net',80,timeout=0.5)
+    info.connect()
+    info.request('GET','/json/%s' % ip)
+    #eval converts the str into a dict
+    info = eval(info.getresponse().read())
+
+    obj.cur.execute('SELECT Id FROM urls WHERE longurl="%s"' % url)
+    urlid2 = str(obj.cur.fetchone()[0])
+
+    #parse keys, values into strs with tuples (curly brackets)
+    keys = str(['urlid']+info.keys()+['date']).replace('[', '(').replace(']', ')').replace("'",'')
+    vals = str([urlid2]+info.values()+[ctime()]).replace('[', '(').replace(']', ')')
+    
+    obj.cur.execute('INSERT INTO url_views %s VALUES %s' % (keys, vals))
+    obj.con.commit()
+
+    #obj.cur.execute('SELECT * FROM url_views')
+    #print(len(obj.cur.fetchall()))
             
 '''def rnd_grad_f(min_color_amount=2, max_color_amount=10,
                min_r=0,min_g=0,min_b=0,
@@ -263,7 +310,12 @@ Enter the password you see in the console',
     }
     }
 
-con = mdb.connect('localhost', 'root', 'password', 'shortener_urls')
+con = mdb.connect(cnf.db.host,
+                  cnf.db.user,
+                  base64.b64decode(cnf.db.password).decode('ascii'),
+                  'shortener_urls')
 cur = con.cursor()
 
 link_password = None   #for validate_password()
+
+capt_code = '' #for captcha

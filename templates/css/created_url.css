@@ -1,3 +1,43 @@
-html {font-family: Copperplate Gothic Light; }
+#info{
+position: absolute;
+top: 40%;
+text-align: center;
+width:99%;
+}
 
-header {text-align: center; background-color: red; }
+header {text-align: center; }
+
+#qr{
+position: absolute;
+top: 180%;
+left: 21%;
+}
+
+h2{
+font-size: 30px;
+color: white;
+}
+
+#url{
+border: 3px solid #66ff99;
+background-color: #286666;
+width:99%;
+}
+
+html>body { height: 1100px; }
+
+#scrolldown{
+width: 99%;
+}
+
+#right{
+float: right;
+background-color: #6666cc;
+width: 80px;
+}
+
+#left{
+float: left;
+background-color: #6666cc;
+width: 80px;
+}

@@ -1,0 +1,19 @@
+#adwrap{
+position: fixed;
+top: 40%;
+right:5px;
+width: 200px;
+height: 50vh;
+background-color: rgba(100,100,100,0.5);
+text-align: center;
+}
+
+#ad{
+background-color: rgba(100,100,150,0.8);
+text-align: center;
+margin: 10px;
+}
+
+#ad p{
+font-size: 20px;
+}

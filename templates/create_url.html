@@ -1,12 +1,14 @@
 
     <div id="create_url">
       <div id="form">
-        <form action="/add_url"> <input name="long" placeholder="Enter your long/original url here"
+        <form action="/add_url"> <input id="short" name="short" placeholder="OPTIONAL Enter your custom short url (ex. myhouse)"
+            maxlength="20"
             type="text">
+          <img src="images/chain_short.png" alt="short chain / link"> <br>
           <br>
-          <br>
-          <input name="short" placeholder="OPTIONAL Enter the url you want to shorten it to here (ex. myhouse)"
+          <input id="long" name="long" placeholder="Enter your long/original url here"
             type="text">
+          <img src="images/chain_long.png" alt="long chain / link" maxlength="325">
           <br>
           <br>
           <input value="Submit" class="button" type="submit">
@@ -14,20 +16,23 @@
             <p>Registered users get acsess to more useful features like
               tracking, monetization and more. <a href="/static/create_owner.html">Register</a>
               for free now, or login below!</p>
-            <input name="owner" placeholder="Username" type="text"><a href="/static/help/owners.html">?</a>
+            <input name="owner" placeholder="Username" type="text"><a href="/static/help/owners.html"
+              maxlength="10">?</a>
             <br>
             <br>
             <input name="owner_pass" placeholder="Password" type="password"><a href="/static/help/owners.html">?</a>
             <br>
             <br>
           </div>
-          <a href="javascript:toggle('extra'); ">Show More</a>
+          <a onmouseover="javascript:toggle('extra');" href="javascript:toggle('extra');">Show
+            More</a>
           <div id="extra"> <br>
             <br>
-            <input name="password" placeholder="Link password" type="text"><a href="/static/help/link_pass.html">?</a>
+            <input name="password" placeholder="Link password" type="text"><a href="/static/help/link_pass.html"
+              maxlength="10">?</a>
             <br>
             <br>
           </div>
         </form>
       </div>
-    </div>
+</div>

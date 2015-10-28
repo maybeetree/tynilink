@@ -1,4 +1,5 @@
 import cherrypy
+from base64 import b64encode as b64e
 
 from funcs import *
 
@@ -11,7 +12,7 @@ class unstatic:
             'templates/create_url.html').read()
 
     @cherrypy.expose
-    def sucsess(self,surl='',lurl='',user=''):
+    def sucsess(self,surl='',lurl=''):
         '''when user added url sucsessfully'''
         
         ses_log('[added link]', 'sending page')
@@ -19,7 +20,7 @@ class unstatic:
         
         return open(
             'templates/info/link/created_url.html'
-            ).read() % (base64.b64decode(lurl),surl,user,lurl,uuid(lurl))
+            ).read() % (surl,lurl)
 
     '''@cherrypy.expose
     def rnd_grad(self):

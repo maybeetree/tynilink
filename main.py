@@ -2,6 +2,7 @@ import MySQLdb as mdb
 import StringIO
 import qrcode
 import hashlib, base64
+from random_words import RandomWords
 
 import cherrypy
 from cherrypy.lib import cptools
@@ -21,10 +22,12 @@ from funcs import *
 class shortener:
     def __init__(self):
         '''the cur and con objects for accsessing the db'''
-        global cur, con, link_password
+        global cur, con, link_password, capt_code
         
         self.cur = cur
         self.con = con
+        self.capt_code = capt_code
+        self.rw = RandomWords()
 
         ses_log('[init]', 'done')
         #self.link_pass=link_password
@@ -33,6 +36,7 @@ class shortener:
     def index(self,d = None):
         '''redirect user to homepage or link'''
 
+        capt_code = get_sentences(1)
         redir = geturl(self,d)#get the url to redirect to
         
         #return 'hai'
@@ -49,6 +53,12 @@ class shortener:
     #    return uuid(text)
 
     @cherrypy.expose
+    def getcaptcha(self):
+        cherrypy.response.headers['Content-Type'] = "image/png"
+        self.capt_code = self.rw.random_word()
+        return newcaptcha(text = self.capt_code)
+
+    @cherrypy.expose
     def getqr(self,url):
         '''generate qr from url'''
 
@@ -60,16 +70,19 @@ class shortener:
     def add_url(self, short, long, password = None, owner = '', owner_pass = ''):
         '''the form from homepage redirects here'''
         
-        if not special_match(short):   #invalid chars
-            raise cherrypy.HTTPRedirect('static/info/link/invalid_chars.html')
-
+        if not special_match(short):   #test for invalid chars
+            raise cherrypy.HTTPRedirect('static/info/invalid_chars.html')
+        
         long = base64.b64encode(long)
         ses_log('[add url]', 'calling func')
         result = new_url(self, short, long, password = password,
                      owner = owner, owner_pass = owner_pass)
         
         raise cherrypy.HTTPRedirect('/%s\
-?lurl=%s;surl=%s;user=%s' % (result,long,short,owner))
+?surl=%s;lurl=%s' % (result[0],result[1],long))
+    #using result[1] instead of short, because if short is empty,
+    #the function will set it to the hash of long, but
+    #the short in this func won't be changed
 
     @cherrypy.expose
     def show_message(self, msg, redirect = False):
@@ -105,9 +118,14 @@ owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
 ###########Backend: pages the user doesn't see a lot
 
     @cherrypy.expose
-    def add_owner(self,name,password):
-        res = new_owner(self,name,password)
-        raise cherrypy.HTTPRedirect('/static/info/register/%s.html' % res)
+    def add_owner(self,name,password,email):
+        if not special_match(name) or not special_match(password):
+            raise cherrypy.HTTPRedirect('static/info/invalid_chars.html')
+        #if invalid chars used
+    
+        res = new_owner(self,name,password,email)
+        return res
+        #raise cherrypy.HTTPRedirect('/static/info/register/%s.html' % res)
 
     @cherrypy.expose
     def ads(self,destination):
@@ -116,13 +134,14 @@ owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
         ses_log('[ads]', 'redirecting user')
         ses_log('[...END SESSION!!...]', '')
 
-        print(destination[:3])
+        log_visit(cherrypy.request.remote.ip, self, destination)
+        destination = base64.b64decode(destination)#destination is encoded!
 
         if destination[:4] != 'http':   #if url does not include protocol, add it.
             destination = 'http://' + destination
         
         sleep(0.1)   #technical
-        raise cherrypy.HTTPRedirect(destination)
+        raise cherrypy.HTTPRedirect(destination.decode('ascii'))
 
     @cherrypy.expose
     def auth_link(self,dest):

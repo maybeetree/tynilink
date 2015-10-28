@@ -110,3 +110,29 @@ Sat 3 oct:
 
 Sun 4 oct:
 •Added random background gradient generator. Yay! (code stolen from https://jsfiddle.net/minimamente/o0fh1o0a/)
+•Stole and modified chain image from http://www.dawson-group.com/up_files/Australian-Standard-Short-Link-chain.png
+•Worked on webpages
+
+Mon 5 oct:
+•Set invalid character detection for add_url and add_owner
+
+mon 6 oct - Tue 20 oct:
+•Work on webpages
+•Bugfixing
+•Added 'link not found feature'
+•TODO: Make a proper 'link not found' page
+
+wed 21 oct - thu 22 oct:
+•added url tracking (sort of)
+
+wed 21 oct - mon 26 oct:
+•work on webpages
+•broke geturl func (somehow...)
+•TODO: fix geturl func
+•TODO: improve tracking
+
+Tue 27 oct:
+•Fixed TODO 1 from prev. update
+
+Wed 28 Oct:
+•almost 

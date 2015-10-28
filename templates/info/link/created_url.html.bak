@@ -21,7 +21,7 @@ charset="utf-8"></script>
       </header>
       <div id="info">
         <h2>Your Short Url:</h2>
-        <h2 id="url">https://tyni.link?d=%s</h2>
+        <h2 id="url">https://tyni.linl?d=%s</h2>
         <div id="scrolldown">
           <div id="left">
             <p>SCROLL DOWN FOR QR CODE</p>
@@ -31,10 +31,9 @@ charset="utf-8"></script>
           </div>
         </div>
         <div id="qr">
-          <h3>People will be able to go to the url instantly by scanning this QR
-            code:</h3>
+          <h3>People will be able to go to the url instantly by scanning this QR code:</h3>
           <img src="/getqr?url=%s" id="qr"> </div>
-      </div>
+        </div>
     </div>
   </body>
 </html>
