@@ -10,7 +10,7 @@ header {text-align: center; }
 #qr{
 position: absolute;
 top: 180%;
-left: 21%;
+width: 100%;
 }
 
 h2{

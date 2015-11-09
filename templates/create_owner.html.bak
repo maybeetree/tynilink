@@ -31,8 +31,11 @@ charset="utf-8"></script>
           <input id="pass" name="password" placeholder="Enter The password here"
             type="password"><br>
           <br>
-          <input id="email" name="password" placeholder="Enter Your Email here"
+          <input id="email" name="email" placeholder="Enter Your Email here"
             type="email"><br><br>
+          <input id="captcha" name="captcha" placeholder="Enter the word on the right in here."
+            type="text">
+          <img id="captchaimg" src="https://localhost/getcaptcha">
           <input class="button" value="Register" type="submit"> </form>
       </div>
     </div>

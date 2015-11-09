@@ -134,5 +134,23 @@ wed 21 oct - mon 26 oct:
 Tue 27 oct:
 •Fixed TODO 1 from prev. update
 
-Wed 28 Oct:
-•almost 
+Wed 28 oct:
+•Implemented buggy captcha.
+
+Thu 29 oct:
+•Fixed captcha bug (testing needed)
+
+Wed 30 oct - Sun 1 Nov:
+•Broke and fixed everything
+•Not storing long urls in base64 anymore.
+•Apparently I accidentally removed the public user, which broke everything. Now I put it back.
+•More work done
+
+Tue 3 Nov:
+•TODO: replace javascript embed with iframe (cannot do that now because of invalid ssl cert)
+
+Fri 6 Nov:
+•Custom authentication page for passworded links
+•Fixed bug where unencoded long url is sent to success page
+•Now storing all passwords as their hashes (sha1)
+•Changed how all_owner_urls works, so the password is not visible in url bar

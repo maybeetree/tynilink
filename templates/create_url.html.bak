@@ -24,7 +24,8 @@
             <br>
             <br>
           </div>
-          <a onMouseOver="javascript:toggle('extra');" href="javascript:toggle('extra');">Show More</a>
+          <a onmouseover="javascript:toggle('extra');" href="javascript:toggle('extra');">Show
+            More</a>
           <div id="extra"> <br>
             <br>
             <input name="password" placeholder="Link password" type="text"><a href="/static/help/link_pass.html"
@@ -34,4 +35,4 @@
           </div>
         </form>
       </div>
-</div>
+    </div>

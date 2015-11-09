@@ -12,13 +12,32 @@ import socket
 from time import sleep, ctime
 from random import randint, choice
 import sys, re, os
+from hashlib import sha1
 
 
 import shortener_conf as cnf
 
 '''these are unexposed functions used by the shortener'''
+'''
+def encode(key, clear):
+    enc = []
+    for i in range(len(clear)):
+        key_c = key[i % len(key)]
+        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
+        enc.append(enc_c)
+    return base64.urlsafe_b64encode("".join(enc))
 
-def newcaptcha(text = 'test', fontspath='captcha/fonts/'):
+def decode(key, enc):
+    dec = []
+    enc = base64.urlsafe_b64decode(enc)
+    for i in range(len(enc)):
+        key_c = key[i % len(key)]
+        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+        dec.append(dec_c)
+    return "".join(dec)'''
+
+def newcaptcha(text, fontspath='captcha/fonts/'):
+    cherrypy.session['capt_code'] = text
     fonts = []
     for x in os.listdir(fontspath):
         if x.split('.')[-1] == 'ttf':#if font file
@@ -63,16 +82,16 @@ def h6(w):  #stole this from http://www.peterbe.com/plog/best-hashing-function-i
     h = hashlib.md5(w)
     return h.digest().encode('base64')[:6]
 
-def new_owner(self,name,password,email):
-    self.cur.execute("select name from owners where name = '%s'" %
+def new_owner(obj,name,password,email):
+    obj.cur.execute("select name from owners where name = '%s'" %
                     name)
-    if self.cur.fetchone():   #if tuple is not empty
+    if obj.cur.fetchone():   #if tuple is not empty
         ses_log('[new_owner]','owner taken')
         return 'owner_taken'
         
-    self.cur.execute("INSERT INTO owners(name,password,email) \
-VALUES('%s','%s','%s')" % (name,password,email))
-    self.con.commit()
+    obj.cur.execute("INSERT INTO owners(name,password,email) \
+VALUES('%s','%s','%s')" % (name,sha1(password).hexdigest(),email))
+    obj.con.commit()
 
     ses_log('[new owner]', 'added owner w\ name: %s, pass: %s' %
             (name,password))
@@ -92,16 +111,15 @@ def new_qr(url):
     ses_log('[qr creator]', 'made qr code from link %s' % url)
     return contents #return qr code image
     
-def geturl(self,url):
+def geturl(obj,url):
     '''get long url from short or homepage'''
-    #link_password = self.link_pass
-    global link_password
+    #link_password = obj.link_pass
 
     if url != None:   #if d is not specified, redirect to homepage
         ses_log('[processign url]', 'url param recieved')
-        self.cur.execute("select longurl,pass,shorturl \
+        obj.cur.execute("select longurl,pass,shorturl \
 from urls where shorturl = '%s'" % url)   #select link
-        ret = self.cur.fetchone()
+        ret = obj.cur.fetchone()
         
         if not ret:   #if link not found
             return '/fourofour'
@@ -112,9 +130,10 @@ from urls where shorturl = '%s'" % url)   #select link
             
         if ret[1] == '' or ret[1] == None:   #no password
             ses_log('[processing url]', 'link is NOT passworded')
-            return "/ads?destination=%s" % ret[0]#this is really confusing:
-        #ret[0] is the long url, and it is already encoded in base64, becuase
-        #if the url contains params, it's gonna mess everything up.
+            return "/ads?destination=%s" % base64.b64encode(ret[0])
+        #this is really confusing:
+        #ret[0] is the long url, and we need to encode it in base64, so
+        #if the url contains params, it's not gonna mess everything up.
         #ret[2] (seen below) is the short url being passed to the
         #auth_link page. We pass the short url instead of long so the person
         #trying to acess it woudn't see
@@ -123,24 +142,26 @@ from urls where shorturl = '%s'" % url)   #select link
         else:
             #sending shorturl, so longurl is not visible in url bar
             #print('hd ', ret[1])
-            link_password = ret[1]   #for the validate_password()
             ses_log('[processing url]', 'link passworded')
-            #print(ret[2])
+            cherrypy.session['link_pass'] = str(ret[1])
+            #cherrypy.session.acquire_lock()
                 
-            return "/auth_link?dest=%s" % ret[2]
+            return "/display/auth?dest=%s" % ret[2]
         #return str(ret)
         #raise cherrypy.HTTPRedirect("/ads?destination=%s" % longurl)
     else:
-        #self.add_url(1,2,cur)
+        #obj.add_url(1,2,cur)
         ses_log('[processing url]',
                 'no url param recieved, redirecting to homepage')
 
         return '/static/homepage.html'
 
-def new_url(self, short, long, password = None,
+def new_url(obj, short, long, password = None,
             owner = '', owner_pass = ''):
     '''add a new url.
 /add_url uses this'''
+
+    owner_pass = sha1(owner_pass).hexdigest()
 
     ses_log('[new_url]', 'trying to register %s as %s with password %s \
 owner %s, owner pass %s' %
@@ -149,22 +170,23 @@ owner %s, owner pass %s' %
     if not short:   #if short=None or empty str, make url to hash
         short = h6(long)
 
-    self.cur.execute("select shorturl from urls where shorturl = '%s'" %
+    obj.cur.execute("select shorturl from urls where shorturl = '%s'" %
                         short)
 
-    if self.cur.fetchone():   #if tuple is not empty/ url taken
+    if obj.cur.fetchone():   #if tuple is not empty/ url taken
         ses_log('[new_url]','url taken')
         return ('static/info/link/url_taken.html', short)
 
     #if long[0:4] == 'http' or long[0:4] == 'https':
     #    long = long[8:]   #if link has http:// prefix, remove it
         
-    if owner != None:    #if user registered
-        self.cur.execute("select password from owners where name = '%s'" %
+    if 1:    #it used to say   if owner != None:
+        #here, I don't know why, so i'll just keep it like this.
+        obj.cur.execute("select password from owners where name = '%s'" %
                         owner)   #get actual owner password
-        actual_password = self.cur.fetchone()
+        actual_password = obj.cur.fetchone()
 
-        ses_log('[new_url]', 'user is registered')
+        #ses_log('[new_url]', 'user is registered')
             
         if actual_password == None:
             ses_log('[new_url]', 'Unknow user')
@@ -172,10 +194,10 @@ owner %s, owner pass %s' %
                 
         if actual_password[0] == owner_pass:  #if pass correct
             ses_log('[new_url]', 'pass correct')
-            self.cur.execute("INSERT INTO urls(shorturl,longurl,pass,owner) \
+            obj.cur.execute("INSERT INTO urls(shorturl,longurl,pass,owner) \
 VALUES('%s','%s','%s','%s')"
-                                % (short, long, password, owner)) #insert link
-            self.con.commit()
+                                % (short, long, sha1(password).hexdigest(), owner)) #insert link
+            obj.con.commit()
             return ('display/sucsess', short)
         else:
             ses_log('[new_url]', 'pass wrong')
@@ -194,6 +216,7 @@ def log_visit(ip,obj,url,request=None):
     #parse keys, values into strs with tuples (curly brackets)
     keys = str(['urlid']+info.keys()+['date']).replace('[', '(').replace(']', ')').replace("'",'')
     vals = str([urlid2]+info.values()+[ctime()]).replace('[', '(').replace(']', ')')
+
     
     obj.cur.execute('INSERT INTO url_views %s VALUES %s' % (keys, vals))
     obj.con.commit()
@@ -259,8 +282,10 @@ def log_visit(ip,obj,url,request=None):
     return str(ret[0])
 
 '''
+'''
 def validate_password(message, username, password):
-    global link_password
+    #link_password = cherrypy.session.get('link_pass')
+    #cherrypy.session.release_lock()
 
     ses_log('[validating password]', 'password: %s entered: %s username: %s' %
           (link_password, password, username))
@@ -270,6 +295,7 @@ def validate_password(message, username, password):
         return True
     ses_log('[validating password]', 'incorrect pass')
     return False
+'''
 
 def ut_pass_validate(message, username, password):
     ses_log('[ut acsess]', 'func not done yet! returning True')
@@ -294,11 +320,6 @@ conf = {
        'tools.staticdir.on': True,
        'tools.staticdir.dir': './templates'
         },
-   '/auth_link': {
-       'tools.auth_basic.on': True,   #TODO: put in file!
-       'tools.auth_basic.realm': 'This link requires a password.',
-       'tools.auth_basic.checkpassword': validate_password
-    }
    }
 
 conf_ut = {
@@ -315,7 +336,3 @@ con = mdb.connect(cnf.db.host,
                   base64.b64decode(cnf.db.password).decode('ascii'),
                   'shortener_urls')
 cur = con.cursor()
-
-link_password = None   #for validate_password()
-
-capt_code = '' #for captcha

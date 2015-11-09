@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta content="text/html; charset=windows-1252" http-equiv="content-type">
-    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/whatisthis.css">
-    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/create_owner.css">
-    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/submit_button.css">
-    <link rel="stylesheet" type="text/css" href="https://localhost/static/css/floatad.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/whatisthis.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/create_owner.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/submit_button.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/floatad.css">
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script language="javascript" src="https://localhost/static/js/embed.js"></script>
-    <script src="https://localhost/static/js/rnd_grad.js" type="text/javascript"
+    <script language="javascript" src="/static/js/embed.js"></script>
+    <script src="/static/js/rnd_grad.js" type="text/javascript"
 charset="utf-8"></script>
     <title>Tyni.link</title>
   </head>
@@ -31,9 +31,14 @@ charset="utf-8"></script>
           <input id="pass" name="password" placeholder="Enter The password here"
             type="password"><br>
           <br>
-          <input id="email" name="email" placeholder="Enter Your Email here"
-            type="email"><br><br>
-          <input class="button" value="Register" type="submit"> </form>
+          <input id="email" name="email" placeholder="Enter Your Email here" type="email"><br>
+          <br>
+          <input id="captcha" name="captcha" placeholder="Enter the word on the right in here."
+            type="text">
+          <img id="captchaimg" src="https://localhost/getcaptcha"> <input class="button"
+            value="Register"
+            type="submit">
+        </form>
       </div>
     </div>
   </body>

@@ -14,6 +14,10 @@ server_config={
         'server.ssl_module':'pyopenssl',
         'server.ssl_certificate':'ssl/server.crt',
         'server.ssl_private_key':'ssl/server.key',
+        'tools.sessions.on' : True,
+        'tools.sessions.storage_type' : "file",
+        'tools.sessions.storage_path' : "session_files",
+        'tools.sessions.timeout' : 180,
         #'server.ssl_certificate_chain':'gd_bundle.crt'
     }
 

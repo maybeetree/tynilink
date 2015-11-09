@@ -6,10 +6,10 @@ from funcs import *
 '''missing description'''
 
 class unstatic:
-    @cherrypy.expose
+    '''@cherrypy.expose
     def homepage(self):
         return open('templates/homepage.html').read() % open(
-            'templates/create_url.html').read()
+            'templates/create_url.html').read()'''
 
     @cherrypy.expose
     def sucsess(self,surl='',lurl=''):
@@ -20,7 +20,11 @@ class unstatic:
         
         return open(
             'templates/info/link/created_url.html'
-            ).read() % (surl,lurl)
+            ).read() % (surl,base64.b64decode(lurl))
+
+    @cherrypy.expose
+    def auth(self,dest):
+        return open('templates/info/link/auth.html').read() % dest
 
     '''@cherrypy.expose
     def rnd_grad(self):

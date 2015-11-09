@@ -14,6 +14,7 @@ import os
 from time import sleep, ctime
 from random import randint
 import sys
+from hashlib import sha1
 
 from funcs import *
 
@@ -22,12 +23,13 @@ from funcs import *
 class shortener:
     def __init__(self):
         '''the cur and con objects for accsessing the db'''
-        global cur, con, link_password, capt_code
+        global cur, con#, link_password#, capt_code
         
         self.cur = cur
         self.con = con
-        self.capt_code = capt_code
+        #self.capt_code = capt_code
         self.rw = RandomWords()
+        self.pass_enc = self.rw.random_word()
 
         ses_log('[init]', 'done')
         #self.link_pass=link_password
@@ -36,7 +38,7 @@ class shortener:
     def index(self,d = None):
         '''redirect user to homepage or link'''
 
-        capt_code = get_sentences(1)
+        #capt_code = get_sentences(1)
         redir = geturl(self,d)#get the url to redirect to
         
         #return 'hai'
@@ -55,8 +57,8 @@ class shortener:
     @cherrypy.expose
     def getcaptcha(self):
         cherrypy.response.headers['Content-Type'] = "image/png"
-        self.capt_code = self.rw.random_word()
-        return newcaptcha(text = self.capt_code)
+        #self.capt_code = self.rw.random_word()
+        return newcaptcha(self.rw.random_word())
 
     @cherrypy.expose
     def getqr(self,url):
@@ -69,17 +71,18 @@ class shortener:
     @cherrypy.expose
     def add_url(self, short, long, password = None, owner = '', owner_pass = ''):
         '''the form from homepage redirects here'''
+        #this gets called by the form, so the dangerous chars in the url are escaped
         
         if not special_match(short):   #test for invalid chars
             raise cherrypy.HTTPRedirect('static/info/invalid_chars.html')
         
-        long = base64.b64encode(long)
+        #long = base64.b64decode(long)
         ses_log('[add url]', 'calling func')
         result = new_url(self, short, long, password = password,
                      owner = owner, owner_pass = owner_pass)
         
         raise cherrypy.HTTPRedirect('/%s\
-?surl=%s;lurl=%s' % (result[0],result[1],long))
+?surl=%s;lurl=%s' % (result[0],result[1],base64.b64encode(long)))
     #using result[1] instead of short, because if short is empty,
     #the function will set it to the hash of long, but
     #the short in this func won't be changed
@@ -96,10 +99,18 @@ class shortener:
 
     #########other
     @cherrypy.expose
-    def all_owner_urls(self,owner,password):
+    def all_owner_urls(self,name,password):#Store password and login for user
+        cherrypy.session['owner_pass'] = sha1(password).hexdigest()
+        cherrypy.session['owner_name'] = name
+        raise cherrypy.HTTPRedirect('/get_all_owner_urls')
+        
+    @cherrypy.expose
+    def get_all_owner_urls(self):#get all urls of owner (login+pass stored in session)
         '''all urls of a certain owner'''
+        password = cherrypy.session.get('owner_pass')
+        owner = cherrypy.session.get('owner_name')
 
-        if owner == '':   #if trying to open unregistered user
+        if not owner:   #if trying to open unregistered user
                 ses_log('[all_owner_urls]', 'Trying to acsess public user!')
                 return "cannot acsess uregistered user's links!!!!!"
         
@@ -118,10 +129,13 @@ owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
 ###########Backend: pages the user doesn't see a lot
 
     @cherrypy.expose
-    def add_owner(self,name,password,email):
+    def add_owner(self,name,password,email,captcha):
+        #if invalid chars used
         if not special_match(name) or not special_match(password):
             raise cherrypy.HTTPRedirect('static/info/invalid_chars.html')
-        #if invalid chars used
+        #if cpatcha incorrect
+        if captcha != cherrypy.session.get('capt_code'):
+            return 'captcha incorrect'
     
         res = new_owner(self,name,password,email)
         return res
@@ -133,9 +147,9 @@ owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
 
         ses_log('[ads]', 'redirecting user')
         ses_log('[...END SESSION!!...]', '')
-
-        log_visit(cherrypy.request.remote.ip, self, destination)
+        
         destination = base64.b64decode(destination)#destination is encoded!
+        log_visit(cherrypy.request.remote.ip, self, destination)
 
         if destination[:4] != 'http':   #if url does not include protocol, add it.
             destination = 'http://' + destination
@@ -144,12 +158,20 @@ owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
         raise cherrypy.HTTPRedirect(destination.decode('ascii'))
 
     @cherrypy.expose
-    def auth_link(self,dest):
+    def auth_link(self,dest,password):
         '''verify password for passworded links'''
+        
+        password = sha1(password).hexdigest()
+        link_password = cherrypy.session.get('link_pass')
+        ses_log('[validating password]', 'password: %s entered: %s' %
+          (link_password, password))
+        if password == link_password:
+            ses_log('[validating password]', 'sucsess')
+        else: return 'Pass incorrect'
         
         #Get longurl from shorturl
         self.cur.execute("select longurl from urls where shorturl = '%s'" % dest)
         dest2 = cur.fetchone()  #longurl
         ses_log('[auth_link]', 'got url, redirecting')
         
-        raise cherrypy.HTTPRedirect("/ads?destination=%s" % dest2[0])
+        raise cherrypy.HTTPRedirect("/ads?destination=%s" % base64.b64encode(dest2[0]))

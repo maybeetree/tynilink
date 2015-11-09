@@ -4,7 +4,7 @@ border: 3px solid red;
 padding: 10px;
 width: 96%;
 text-align: center;
-height: 20vh;
+height: 30vh;
 }
 
 #form{
@@ -54,3 +54,15 @@ input:focus {
 }
 
 p {color: white; }
+
+#captchaimg{
+float: right;
+padding: 1px;
+}
+
+#captcha{
+background: #bababa;
+float: left;
+width: 50%;
+margin-top: 20px;
+}
