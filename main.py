@@ -23,10 +23,13 @@ from funcs import *
 class shortener:
     def __init__(self):
         '''the cur and con objects for accsessing the db'''
-        global cur, con#, link_password#, capt_code
         
-        self.cur = cur
-        self.con = con
+        self.con = mdb.connect(cnf.db.host,
+                  cnf.db.user,
+                  base64.b64decode(cnf.db.password).decode('ascii'),
+                  'shortener_urls')
+
+        self.cur = con.cursor()
         #self.capt_code = capt_code
         self.rw = RandomWords()
         self.pass_enc = self.rw.random_word()
@@ -99,26 +102,43 @@ class shortener:
 
     #########other
     @cherrypy.expose
-    def all_owner_urls(self,name,password):#Store password and login for user
-        cherrypy.session['owner_pass'] = sha1(password).hexdigest()
-        cherrypy.session['owner_name'] = name
+    def login(self,name,password):#Store password and login for user
+        password = sha1(password).hexdigest()
+        self.cur0.execute("select password from owners where name = '%s'" % name)
+        actual_pass = self.cur.fetchone()
+
+        if name:
+            if actual_pass:
+                if password == actual_pass[0]:
+                   self.cur.execute("select perm from owners where name = '%s'" % name)
+                   cherrypy.session['owner_pass'] = password
+                   cherrypy.session['owner_name'] = name
+                   cherrypy.session['owner_permission'] = str(self.cur.fetchone()[0])
+                else:
+                    return 'incorrect pass'
+            else:
+                return 'unkown owner'
+        else:
+            return 'permission denied'
+        
         raise cherrypy.HTTPRedirect('/get_all_owner_urls')
+
+    @cherrypy.expose
+    def exec_mysql(self,comman=''):
+        perm_lvl = cherrypy.session.get('owner_permission')
+        #self.cur.execute(command)
+        return str(perm_lvl)
+
+        #return str(self.cur.fetchall())
         
     @cherrypy.expose
     def get_all_owner_urls(self):#get all urls of owner (login+pass stored in session)
         '''all urls of a certain owner'''
         password = cherrypy.session.get('owner_pass')
         owner = cherrypy.session.get('owner_name')
-
-        if not owner:   #if trying to open unregistered user
-                ses_log('[all_owner_urls]', 'Trying to acsess public user!')
-                return "cannot acsess uregistered user's links!!!!!"
-        
-        self.cur.execute("select name from owners where \
-password = '%s' and name = '%s'" % (password, owner))    #Select owner name
-        
+                
         self.cur.execute("select longurl,pass,shorturl from urls where \
-owner = '%s'" % cur.fetchone()[0])   #Select the links that belong to the owner
+owner = '%s'" % owner[0])   #Select the links that belong to the owner
 
         ses_log('[all_owner_urls]', 'sending urls of owner %s, pass: %s' %
                 (owner,password))

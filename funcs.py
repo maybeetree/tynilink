@@ -119,7 +119,7 @@ def geturl(obj,url):
         ses_log('[processign url]', 'url param recieved')
         obj.cur.execute("select longurl,pass,shorturl \
 from urls where shorturl = '%s'" % url)   #select link
-        ret = obj.cur.fetchone()
+        ret = obj.cur0.fetchone()
         
         if not ret:   #if link not found
             return '/fourofour'
@@ -330,9 +330,3 @@ Enter the password you see in the console',
        'tools.auth_basic.checkpassword': ut_pass_validate
     }
     }
-
-con = mdb.connect(cnf.db.host,
-                  cnf.db.user,
-                  base64.b64decode(cnf.db.password).decode('ascii'),
-                  'shortener_urls')
-cur = con.cursor()
