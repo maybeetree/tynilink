@@ -1,10 +1,18 @@
 import cherrypy
 
-import  main, ut, unstatic, funcs
+import  main, unstatic, funcs, links, owners, other
+
+import os, sys
+
+from funcs import *
 
 '''launch all web pages'''
 
+
 funcs.ses_log('\n\n[***SERVER RESTARTED!!***]', '')
+
+print('\n\n\ndo for tracking: %s/freegeoip/freegeoip -http :8082\n\n\n' %
+          os.path.dirname(os.path.abspath(__file__)))
 
 #====cherrypy stuff====
 server_config={
@@ -21,9 +29,12 @@ server_config={
         #'server.ssl_certificate_chain':'gd_bundle.crt'
     }
 
-cherrypy.tree.mount(main.shortener(),'/',config = funcs.conf)
-cherrypy.tree.mount(ut.utils(),'/ut',config = funcs.conf_ut)
-cherrypy.tree.mount(unstatic.unstatic(),'/display',config = funcs.conf)
+#cherrypy.tree.mount(main.shortener(),'/',config = funcs.conf)
+#cherrypy.tree.mount(ut.utils(),'/ut',config = funcs.conf_ut)
+cherrypy.tree.mount(unstatic.unstatic(),'/display',config = conf)
+cherrypy.tree.mount(links.link(),'/',config = conf)
+cherrypy.tree.mount(owners.owner(),'/owner',config = conf)
+cherrypy.tree.mount(other.main(),'/other',config = conf)
 
 #cherrypy.config.update({'error_page.404': error_page_404})
 #cherrypy.server.socket_host = socket.gethostbyname(

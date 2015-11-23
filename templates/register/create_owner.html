@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <link rel="stylesheet" type="text/css" href="/static/css/whatisthis.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/create_owner.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/submit_button.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/floatad.css">
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script language="javascript" src="/static/js/embed.js"></script>
+    <script src="/static/js/rnd_grad.js" type="text/javascript" charset="utf-8"></script>
+    <title>Tyni.link</title>
+  </head>
+  <body onload="runmain();  clientSideInclude('selfad', 'https://localhost/static/ad.html');">
+    <span id="selfad"> </span>
+    <div id="hero">
+      <header>
+        <div class="header">
+          <div id="title">
+            <h1> Tyni.link </h1>
+            <h4> Registering User </h4>
+          </div>
+        </div>
+      </header>
+      <div id="form">
+        <p>blah blah blah blah blah blah blah blah blah blah blah blah</p>
+        <form action="/owner/new_owner"> <input id="name" name="name" placeholder="Enter Yout Username Here"
+            type="text"><br>
+          <br>
+          <input id="pass" name="password" placeholder="Enter The password here"
+            type="password"><br>
+          <br>
+          <input id="email" name="email" placeholder="Enter Your Email here" type="email"><br>
+          <br>
+          <input id="captcha" name="captcha" placeholder="Enter the word on the right in here."
+            type="text">
+          <img id="captchaimg" src="/other/getcaptcha"> <input class="button"
+            value="Register"
+            type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

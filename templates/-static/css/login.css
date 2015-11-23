@@ -1,0 +1,47 @@
+#login {
+position: absolute;
+top: 50%;
+left: 18%;
+
+border: 3px solid red;
+
+padding: 10px;
+text-align: center;
+}
+
+#login {background-color: #ff897e; }
+
+#login input {background-color: #eeff2d; }
+
+input {
+  display: block;
+  margin: 0;
+  width: 94%;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  float: left;
+  margin: 5px;
+  background: #33ff33; 
+}
+input:focus {
+  outline: none;
+  }
+
+::-webkit-input-placeholder {
+   color: #626463;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #626463;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #626463;  
+}
+
+:-ms-input-placeholder {  
+   color: #626463;  
+}

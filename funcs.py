@@ -13,6 +13,7 @@ from time import sleep, ctime
 from random import randint, choice
 import sys, re, os
 from hashlib import sha1
+from random_words import RandomWords
 
 
 import shortener_conf as cnf
@@ -71,17 +72,19 @@ def ses_log(func, text, logfile = 'log.txt'):
     #with file as f: #with statement for auto-save
     #    f.write(func + ' ' + text + '\n')
 
-
+'''
 def uuid(text):  #--------->  please ignore this function  <---------
     return base64.b64encode(  #encode into base 64
         hashlib.md5('hello')   #md5
         .digest()   #get md5
-        )
+        )'''
 
 def h6(w):  #stole this from http://www.peterbe.com/plog/best-hashing-function-in-python
     h = hashlib.md5(w)
     return h.digest().encode('base64')[:6]
 
+    
+'''
 def new_owner(obj,name,password,email):
     obj.cur.execute("select name from owners where name = '%s'" %
                     name)
@@ -97,9 +100,9 @@ VALUES('%s','%s','%s')" % (name,sha1(password).hexdigest(),email))
             (name,password))
 
     return "created_owner"
-
+''''''
 def new_qr(url):
-    '''generates qr code from link'''
+    'generates qr code from link'
 
     img = qrcode.make(url)#make qr
     output = StringIO.StringIO()#create fake file(because pillow.save only writes to files)
@@ -110,9 +113,9 @@ def new_qr(url):
 
     ses_log('[qr creator]', 'made qr code from link %s' % url)
     return contents #return qr code image
-    
+''''''
 def geturl(obj,url):
-    '''get long url from short or homepage'''
+    'get long url from short or homepage'
     #link_password = obj.link_pass
 
     if url != None:   #if d is not specified, redirect to homepage
@@ -155,11 +158,10 @@ from urls where shorturl = '%s'" % url)   #select link
                 'no url param recieved, redirecting to homepage')
 
         return '/static/homepage.html'
-
+''''''
 def new_url(obj, short, long, password = None,
             owner = '', owner_pass = ''):
-    '''add a new url.
-/add_url uses this'''
+    'add a new url. /add_url uses this'
 
     owner_pass = sha1(owner_pass).hexdigest()
 
@@ -202,27 +204,32 @@ VALUES('%s','%s','%s','%s')"
         else:
             ses_log('[new_url]', 'pass wrong')
             return ('static/info/link/wrong_password.html', short)
-
-def log_visit(ip,obj,url,request=None):
-    info = httplib.HTTPConnection('freegeoip.net',80,timeout=0.5)
+'''
+def log_visit(ip,url,request=None):
+    #return None
+    info = httplib.HTTPConnection('',8082,timeout=5)
     info.connect()
     info.request('GET','/json/%s' % ip)
     #eval converts the str into a dict
     info = eval(info.getresponse().read())
 
-    obj.cur.execute('SELECT Id FROM urls WHERE longurl="%s"' % url)
-    urlid2 = str(obj.cur.fetchone()[0])
+    cur.execute('SELECT Id FROM urls WHERE longurl="%s"' % url)
+    urlid2 = str(cur.fetchone()[0])
 
     #parse keys, values into strs with tuples (curly brackets)
     keys = str(['urlid']+info.keys()+['date']).replace('[', '(').replace(']', ')').replace("'",'')
     vals = str([urlid2]+info.values()+[ctime()]).replace('[', '(').replace(']', ')')
 
     
-    obj.cur.execute('INSERT INTO url_views %s VALUES %s' % (keys, vals))
-    obj.con.commit()
+    cur.execute('INSERT INTO url_views %s VALUES %s' % (keys, vals))
+    con.commit()
 
-    #obj.cur.execute('SELECT * FROM url_views')
-    #print(len(obj.cur.fetchall()))
+def get_login_text():
+        name = cherrypy.session.get('owner_name')
+        if name:
+            return 'You are logged in as <b>%s </b><a href="/owner/get_all_owner_urls">account</a>' % name
+        return 'You are not logged in'
+
             
 '''def rnd_grad_f(min_color_amount=2, max_color_amount=10,
                min_r=0,min_g=0,min_b=0,
@@ -296,7 +303,7 @@ def validate_password(message, username, password):
     ses_log('[validating password]', 'incorrect pass')
     return False
 '''
-
+'''
 def ut_pass_validate(message, username, password):
     ses_log('[ut acsess]', 'func not done yet! returning True')
     return True
@@ -311,6 +318,7 @@ def ut_pass_validate(message, username, password):
 #    ses_log('[ut pass checker]', 'pass UNsucsessfull')
 #    ses_log('[ut pass checker]', 'end')
 #    return False
+'''
 
 conf = {
    '/': {
@@ -318,10 +326,11 @@ conf = {
        },
    '/static': {
        'tools.staticdir.on': True,
-       'tools.staticdir.dir': './templates'
+       'tools.staticdir.dir': './templates/-static'
         },
    }
 
+'''
 conf_ut = {
     '/': {
        'tools.auth_basic.on': True,   #TODO: put in file!
@@ -330,3 +339,13 @@ Enter the password you see in the console',
        'tools.auth_basic.checkpassword': ut_pass_validate
     }
     }
+'''
+
+con = mdb.connect(cnf.db.host,
+                  cnf.db.user,
+                  base64.b64decode(cnf.db.password).decode('ascii'),
+                  'shortener_urls')
+
+cur = con.cursor()
+
+rw = RandomWords()

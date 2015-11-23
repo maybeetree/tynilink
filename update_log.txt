@@ -154,3 +154,12 @@ Fri 6 Nov:
 •Fixed bug where unencoded long url is sent to success page
 •Now storing all passwords as their hashes (sha1)
 •Changed how all_owner_urls works, so the password is not visible in url bar
+
+Fri 13 Nov - Sun 15 nov:
+•Got killed by Jason (json...?)
+•Reorganised everything
+
+Sat 21 Nov:
+•Re-organised everything to do with static webpages
+•Added "You are logged in as" box on all webpages
+•Setup local freegeoip

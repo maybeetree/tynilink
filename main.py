@@ -23,13 +23,10 @@ from funcs import *
 class shortener:
     def __init__(self):
         '''the cur and con objects for accsessing the db'''
+        global cur,con
         
-        self.con = mdb.connect(cnf.db.host,
-                  cnf.db.user,
-                  base64.b64decode(cnf.db.password).decode('ascii'),
-                  'shortener_urls')
-
-        self.cur = con.cursor()
+        self.cur = cur
+        self.con = con
         #self.capt_code = capt_code
         self.rw = RandomWords()
         self.pass_enc = self.rw.random_word()

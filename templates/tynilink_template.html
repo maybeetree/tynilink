@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <link rel="stylesheet" type="text/css" href="/static/css/whatisthis.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/submit_button.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/floatad.css">
+    %s
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/static/js/rnd_grad.js" type="text/javascript" charset="utf-8"></script>
+    <script language="javascript" src="/static/js/show_more.js"></script>
+    %s
+    <title>Tyni.link</title>
+  </head>
+  <body onload="runmain();">
+    <div id="hero">
+      <header>
+        <div class="header">
+          <h1> Tyni.link </h1>
+          <h4> %s </h4>
+          %s
+          
+        </div>
+      </header>
+    </div>
+    <div id="owner">
+          <p>%s</p><br>
+          <a href="/other/display?page=login" id="login_text">Login</a>
+          <a href="/owner/login?name=;password=;redir=/other/display?page=homepage" id="logout">Logout</a>
+          <a href="/other/display?page=register">Register</a>
+    </div>
+    <div id="content">
+      %s
+    </div>
+    <footer class="item">
+      <p>footer text</p>
+    </footer>
+  </body>
+</html>

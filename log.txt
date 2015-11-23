@@ -1,208 +1,299 @@
+[new owner] (Sat Nov 21 14:14:25 2015) added owner w\ name: gregor, pass: bobcat
+[processing url] (Sat Nov 21 15:31:12 2015) no url param recieved, redirecting to homepage
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 14:46:51 2015) 
-[init] (Sat Nov  7 14:46:51 2015) done
-[ut init] (Sat Nov  7 14:46:51 2015) init done
-[added link] (Sat Nov  7 14:46:58 2015) sending page
-[...END SESSION!!...] (Sat Nov  7 14:46:58 2015) 
-[qr gen] (Sat Nov  7 14:46:58 2015) sending qr image
-[qr creator] (Sat Nov  7 14:46:58 2015) made qr code from link 
-[added link] (Sat Nov  7 14:47:07 2015) sending page
-[...END SESSION!!...] (Sat Nov  7 14:47:07 2015) 
-[qr gen] (Sat Nov  7 14:47:07 2015) sending qr image
-[qr creator] (Sat Nov  7 14:47:07 2015) made qr code from link 
-[processing url] (Sat Nov  7 14:47:12 2015) no url param recieved, redirecting to homepage
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:32:23 2015) 
 
-[***SESSION STARTED!!***] (Sat Nov  7 14:47:12 2015) 
-[index] (Sat Nov  7 14:47:12 2015) redirecting user to /static/homepage.html
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:35:22 2015) 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 14:48:47 2015) 
-[init] (Sat Nov  7 14:48:47 2015) done
-[ut init] (Sat Nov  7 14:48:47 2015) init done
-[new owner] (Sat Nov  7 14:48:49 2015) added owner w\ name: bob, pass: 12345
-[processing url] (Sat Nov  7 14:51:54 2015) no url param recieved, redirecting to homepage
 
-[***SESSION STARTED!!***] (Sat Nov  7 14:51:54 2015) 
-[index] (Sat Nov  7 14:51:54 2015) redirecting user to /static/homepage.html
-[add url] (Sat Nov  7 14:52:22 2015) calling func
-[new_url] (Sat Nov  7 14:52:22 2015) trying to register https://portswigger.net/burp/help/intruder_using.html#launching as burp_intruder with password  owner bob, owner pass 8cb2237d0679ca88db6464eac60da96345513964
-[new_url] (Sat Nov  7 14:52:22 2015) pass correct
-[added link] (Sat Nov  7 14:52:22 2015) sending page
-[...END SESSION!!...] (Sat Nov  7 14:52:22 2015) 
-[qr gen] (Sat Nov  7 14:52:22 2015) sending qr image
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:35:42 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 14:53:36 2015) 
-[init] (Sat Nov  7 14:53:36 2015) done
-[ut init] (Sat Nov  7 14:53:36 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:35:44 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 15:54:58 2015) 
-[init] (Sat Nov  7 15:54:58 2015) done
-[ut init] (Sat Nov  7 15:54:58 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:38:36 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 16:04:13 2015) 
-[init] (Sat Nov  7 16:04:13 2015) done
-[ut init] (Sat Nov  7 16:04:13 2015) init done
-[all_owner_urls] (Sat Nov  7 16:04:15 2015) sending urls of owner bob, pass: 8cb2237d0679ca88db6464eac60da96345513964
-[...END SESSION!!...] (Sat Nov  7 16:04:15 2015) 
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:38:52 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:19:03 2015) 
-[init] (Sat Nov  7 20:19:03 2015) done
-[ut init] (Sat Nov  7 20:19:03 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:39:13 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:49:33 2015) 
-[init] (Sat Nov  7 20:49:33 2015) done
-[ut init] (Sat Nov  7 20:49:33 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:39:26 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:50:52 2015) 
-[init] (Sat Nov  7 20:50:52 2015) done
-[ut init] (Sat Nov  7 20:50:52 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:39:48 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:51:07 2015) 
-[init] (Sat Nov  7 20:51:07 2015) done
-[ut init] (Sat Nov  7 20:51:07 2015) init done
-[all_owner_urls] (Sat Nov  7 20:51:09 2015) sending urls of owner bob, pass: 8cb2237d0679ca88db6464eac60da96345513964
-[...END SESSION!!...] (Sat Nov  7 20:51:09 2015) 
-[all_owner_urls] (Sat Nov  7 20:51:12 2015) sending urls of owner bob, pass: 8cb2237d0679ca88db6464eac60da96345513964
-[...END SESSION!!...] (Sat Nov  7 20:51:12 2015) 
+[***SERVER RESTARTED!!***] (Sat Nov 21 15:40:00 2015) 
+[all_owner_urls] (Sat Nov 21 15:40:03 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 15:40:03 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:52:01 2015) 
-[init] (Sat Nov  7 20:52:01 2015) done
-[ut init] (Sat Nov  7 20:52:01 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:08:45 2015) 
 
 
-[***SERVER RESTARTED!!***] (Sat Nov  7 20:52:04 2015) 
-[init] (Sat Nov  7 20:52:04 2015) done
-[ut init] (Sat Nov  7 20:52:04 2015) init done
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:12:02 2015) 
 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:05:10 2015) 
-[init] (Mon Nov  9 20:05:10 2015) done
-[ut init] (Mon Nov  9 20:05:10 2015) init done
-[processing url] (Mon Nov  9 20:06:31 2015) no url param recieved, redirecting to homepage
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:14:23 2015) 
+[processing url] (Sat Nov 21 16:14:27 2015) no url param recieved, redirecting to homepage
+[all_owner_urls] (Sat Nov 21 16:14:37 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 16:14:37 2015) 
 
-[***SESSION STARTED!!***] (Mon Nov  9 20:06:31 2015) 
-[index] (Mon Nov  9 20:06:31 2015) redirecting user to /static/homepage.html
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:15:24 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:08:24 2015) 
-[init] (Mon Nov  9 20:08:24 2015) done
-[ut init] (Mon Nov  9 20:08:24 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:15:34 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:09:21 2015) 
-[init] (Mon Nov  9 20:09:21 2015) done
-[ut init] (Mon Nov  9 20:09:21 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:15:53 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:48:16 2015) 
-[init] (Mon Nov  9 20:48:16 2015) done
-[ut init] (Mon Nov  9 20:48:16 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:16:08 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:48:59 2015) 
-[init] (Mon Nov  9 20:48:59 2015) done
-[ut init] (Mon Nov  9 20:48:59 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:16:13 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:49:19 2015) 
-[init] (Mon Nov  9 20:49:19 2015) done
-[ut init] (Mon Nov  9 20:49:19 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:16:16 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:49:44 2015) 
-[init] (Mon Nov  9 20:49:44 2015) done
-[ut init] (Mon Nov  9 20:49:44 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:16:38 2015) 
+[all_owner_urls] (Sat Nov 21 16:16:48 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 16:16:48 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:49:58 2015) 
-[init] (Mon Nov  9 20:49:58 2015) done
-[ut init] (Mon Nov  9 20:49:58 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 16:19:02 2015) 
+[all_owner_urls] (Sat Nov 21 17:38:20 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 17:38:20 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:53:07 2015) 
-[init] (Mon Nov  9 20:53:07 2015) done
-[ut init] (Mon Nov  9 20:53:07 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 17:38:39 2015) 
+[all_owner_urls] (Sat Nov 21 17:38:48 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 17:38:48 2015) 
+[all_owner_urls] (Sat Nov 21 17:38:51 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 17:38:51 2015) 
+[processing url] (Sat Nov 21 17:40:16 2015) no url param recieved, redirecting to homepage
+[new_url] (Sat Nov 21 17:40:26 2015) url taken
+[processing url] (Sat Nov 21 17:41:28 2015) no url param recieved, redirecting to homepage
+[qr creator] (Sat Nov 21 17:41:38 2015) made qr code from link aHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy82NjU3ODQ4L2NoZXJyeXB5LWhhbmRsZS1hbGwtcmVxdWVzdC13aXRoLW9uZS1mdW5jdGlvbi1vci1jbGFzcw==
+[all_owner_urls] (Sat Nov 21 17:41:42 2015) sending urls of owner MaybE_Tree
+[...END SESSION!!...] (Sat Nov 21 17:41:42 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:53:35 2015) 
-[init] (Mon Nov  9 20:53:35 2015) done
-[ut init] (Mon Nov  9 20:53:35 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 17:46:21 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:53:42 2015) 
-[init] (Mon Nov  9 20:53:42 2015) done
-[ut init] (Mon Nov  9 20:53:42 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:06:28 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:54:18 2015) 
-[init] (Mon Nov  9 20:54:18 2015) done
-[ut init] (Mon Nov  9 20:54:18 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:13:19 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:55:48 2015) 
-[init] (Mon Nov  9 20:55:48 2015) done
-[ut init] (Mon Nov  9 20:55:48 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:16:55 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:56:25 2015) 
-[init] (Mon Nov  9 20:56:25 2015) done
-[ut init] (Mon Nov  9 20:56:25 2015) init done
-[all_owner_urls] (Mon Nov  9 20:56:27 2015) sending urls of owner Fred_Fuchs, pass: 044a1b9f0c36eab8330cf72deb3185eebab77724
-[...END SESSION!!...] (Mon Nov  9 20:56:27 2015) 
-[all_owner_urls] (Mon Nov  9 20:58:00 2015) sending urls of owner alex, pass: 9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684
-[...END SESSION!!...] (Mon Nov  9 20:58:00 2015) 
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:17:34 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:59:19 2015) 
-[init] (Mon Nov  9 20:59:19 2015) done
-[ut init] (Mon Nov  9 20:59:19 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:22:46 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 20:59:58 2015) 
-[init] (Mon Nov  9 20:59:58 2015) done
-[ut init] (Mon Nov  9 20:59:58 2015) init done
 
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:24:02 2015) 
+[processign url] (Sat Nov 21 18:24:22 2015) url param recieved
+[processign url] (Sat Nov 21 18:24:29 2015) url param recieved
+[processign url] (Sat Nov 21 18:24:29 2015) longurl: www.rbc.ru, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: test55
+[processing url] (Sat Nov 21 18:24:29 2015) link is NOT passworded
+[ads] (Sat Nov 21 18:24:29 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:24:29 2015) 
+[ads] (Sat Nov 21 18:24:34 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:24:34 2015) 
 
-[***SERVER RESTARTED!!***] (Mon Nov  9 21:00:38 2015) 
-[init] (Mon Nov  9 21:00:38 2015) done
-[ut init] (Mon Nov  9 21:00:38 2015) init done
-[all_owner_urls] (Mon Nov  9 21:00:56 2015) sending urls of owner Fred_Fuchs, pass: 044a1b9f0c36eab8330cf72deb3185eebab77724
-[...END SESSION!!...] (Mon Nov  9 21:00:56 2015) 
-
-
-[***SERVER RESTARTED!!***] (Mon Nov  9 21:02:08 2015) 
-[init] (Mon Nov  9 21:02:08 2015) done
-[ut init] (Mon Nov  9 21:02:08 2015) init done
-
-
-[***SERVER RESTARTED!!***] (Mon Nov  9 22:30:58 2015) 
-[init] (Mon Nov  9 22:30:58 2015) done
-[ut init] (Mon Nov  9 22:30:58 2015) init done
-
-
-[***SERVER RESTARTED!!***] (Mon Nov  9 22:32:45 2015) 
-[init] (Mon Nov  9 22:32:45 2015) done
-[ut init] (Mon Nov  9 22:32:45 2015) init done
-[all_owner_urls] (Mon Nov  9 22:33:31 2015) sending urls of owner <button>MaybE_Tree</button>, pass: 9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684
-[...END SESSION!!...] (Mon Nov  9 22:33:31 2015) 
-
-
-[***SERVER RESTARTED!!***] (Mon Nov  9 22:34:06 2015) 
-[init] (Mon Nov  9 22:34:06 2015) done
-[ut init] (Mon Nov  9 22:34:06 2015) init done
-
-
-[***SERVER RESTARTED!!***] (Mon Nov  9 22:34:22 2015) 
-[init] (Mon Nov  9 22:34:22 2015) done
-[ut init] (Mon Nov  9 22:34:22 2015) init done
-[all_owner_urls] (Mon Nov  9 22:34:44 2015) sending urls of owner <button>MaybE_Tree</button>, pass: 9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684
-[...END SESSION!!...] (Mon Nov  9 22:34:44 2015) 
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:25:31 2015) 
+[ads] (Sat Nov 21 18:25:36 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:25:36 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:25:50 2015) 
+[ads] (Sat Nov 21 18:25:53 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:25:53 2015) 
+[ads] (Sat Nov 21 18:25:55 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:25:55 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 18:26:09 2015) 
+[ads] (Sat Nov 21 18:26:10 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:26:10 2015) 
+[processign url] (Sat Nov 21 18:26:49 2015) url param recieved
+[processign url] (Sat Nov 21 18:26:49 2015) longurl: www.rbc.ru, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: test55
+[processing url] (Sat Nov 21 18:26:49 2015) link is NOT passworded
+[ads] (Sat Nov 21 18:26:49 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 18:26:49 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:03:44 2015) 
+[ads] (Sat Nov 21 19:03:48 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:03:48 2015) 
+[ads] (Sat Nov 21 19:03:49 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:03:49 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:04:26 2015) 
+[ads] (Sat Nov 21 19:04:32 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:04:32 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:04:46 2015) 
+[ads] (Sat Nov 21 19:04:48 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:04:48 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:07:26 2015) 
+[ads] (Sat Nov 21 19:07:28 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:07:28 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:08:00 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:08:31 2015) 
+[ads] (Sat Nov 21 19:08:44 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 19:08:44 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sat Nov 21 19:09:38 2015) 
+[ads] (Sat Nov 21 20:03:52 2015) redirecting user
+[...END SESSION!!...] (Sat Nov 21 20:03:52 2015) 
+[processing url] (Sun Nov 22 10:27:07 2015) no url param recieved, redirecting to homepage
+[processing url] (Sun Nov 22 10:27:48 2015) no url param recieved, redirecting to homepage
+[processing url] (Sun Nov 22 10:28:18 2015) no url param recieved, redirecting to homepage
+[processing url] (Sun Nov 22 10:28:57 2015) no url param recieved, redirecting to homepage
+[processing url] (Sun Nov 22 10:32:16 2015) no url param recieved, redirecting to homepage
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 10:49:00 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 10:50:30 2015) 
+[processign url] (Sun Nov 22 10:50:46 2015) url param recieved
+[processign url] (Sun Nov 22 10:50:46 2015) longurl: 
+short=', password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: cbX/vU
+[processing url] (Sun Nov 22 10:50:46 2015) link is NOT passworded
+[ads] (Sun Nov 22 10:50:46 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 10:50:46 2015) 
+[processign url] (Sun Nov 22 10:52:46 2015) url param recieved
+[processign url] (Sun Nov 22 10:52:46 2015) longurl: 
+www.isa.nl, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: K8s9QE
+[processing url] (Sun Nov 22 10:52:46 2015) link is NOT passworded
+[ads] (Sun Nov 22 10:52:46 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 10:52:46 2015) 
+[new_url] (Sun Nov 22 10:53:11 2015) url taken
+[processign url] (Sun Nov 22 10:53:34 2015) url param recieved
+[processign url] (Sun Nov 22 10:53:55 2015) url param recieved
+[processign url] (Sun Nov 22 10:53:55 2015) longurl: 
+www.yandex.ru, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: LXidXC
+[processing url] (Sun Nov 22 10:53:55 2015) link is NOT passworded
+[ads] (Sun Nov 22 10:53:55 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 10:53:55 2015) 
+[processign url] (Sun Nov 22 10:55:07 2015) url param recieved
+[processign url] (Sun Nov 22 10:55:07 2015) longurl: 
+www.apple.com, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: RwF3OH
+[processing url] (Sun Nov 22 10:55:07 2015) link is NOT passworded
+[ads] (Sun Nov 22 10:55:07 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 10:55:07 2015) 
+[new_url] (Sun Nov 22 18:10:03 2015) url taken
+[new_url] (Sun Nov 22 18:18:47 2015) url taken
+[new_url] (Sun Nov 22 18:19:48 2015) url taken
+[new_url] (Sun Nov 22 18:20:54 2015) url taken
+[new_url] (Sun Nov 22 18:21:53 2015) url taken
+[new_url] (Sun Nov 22 18:22:16 2015) url taken
+[new_url] (Sun Nov 22 18:23:19 2015) url taken
+[new_url] (Sun Nov 22 18:23:38 2015) url taken
+[new_url] (Sun Nov 22 18:24:53 2015) url taken
+[new_url] (Sun Nov 22 18:25:29 2015) url taken
+[new_url] (Sun Nov 22 18:26:27 2015) url taken
+[new_url] (Sun Nov 22 18:36:55 2015) url taken
+[processign url] (Sun Nov 22 18:42:11 2015) url param recieved
+[processign url] (Sun Nov 22 18:42:11 2015) longurl: www.google.com/search?q=test4, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: OTgoxv
+[processing url] (Sun Nov 22 18:42:11 2015) link is NOT passworded
+[ads] (Sun Nov 22 18:42:11 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 18:42:11 2015) 
+[processign url] (Sun Nov 22 18:42:50 2015) url param recieved
+[processign url] (Sun Nov 22 18:42:50 2015) longurl: www.google.com/search?q=test5, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: f6syh0
+[processing url] (Sun Nov 22 18:42:50 2015) link is NOT passworded
+[ads] (Sun Nov 22 18:42:51 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 18:42:51 2015) 
+[processign url] (Sun Nov 22 19:59:49 2015) url param recieved
+[processign url] (Sun Nov 22 19:59:49 2015) longurl: https://localhost?d=ht7Sy6, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: r6Qb9Z
+[processing url] (Sun Nov 22 19:59:49 2015) link is NOT passworded
+[ads] (Sun Nov 22 19:59:49 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 19:59:49 2015) 
+[processign url] (Sun Nov 22 19:59:49 2015) url param recieved
+[processign url] (Sun Nov 22 19:59:49 2015) longurl: https://localhost?d= zPBwc, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: ht7Sy6
+[processing url] (Sun Nov 22 19:59:49 2015) link is NOT passworded
+[ads] (Sun Nov 22 19:59:49 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 19:59:49 2015) 
+[processign url] (Sun Nov 22 19:59:49 2015) url param recieved
+[processign url] (Sun Nov 22 19:59:56 2015) url param recieved
+[processign url] (Sun Nov 22 20:00:00 2015) url param recieved
+[processign url] (Sun Nov 22 20:00:02 2015) url param recieved
+[new_url] (Sun Nov 22 20:32:26 2015) url taken
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 20:34:29 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 20:35:27 2015) 
+[processign url] (Sun Nov 22 20:36:05 2015) url param recieved
+[processign url] (Sun Nov 22 20:36:05 2015) longurl: url taken, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: 3WQElh
+[processing url] (Sun Nov 22 20:36:05 2015) link is NOT passworded
+[ads] (Sun Nov 22 20:36:06 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 20:36:06 2015) 
+[new_url] (Sun Nov 22 20:36:25 2015) url taken
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 20:37:07 2015) 
+[processign url] (Sun Nov 22 20:37:21 2015) url param recieved
+[processign url] (Sun Nov 22 20:37:21 2015) longurl: https://discussions.apple.com/thread/4588230?tstart=0, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: ckJU0p
+[processing url] (Sun Nov 22 20:37:21 2015) link is NOT passworded
+[ads] (Sun Nov 22 20:37:21 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 20:37:21 2015) 
+[processing url] (Sun Nov 22 21:03:39 2015) no url param recieved, redirecting to homepage
+[processing url] (Sun Nov 22 21:05:54 2015) no url param recieved, redirecting to homepage
+[new owner] (Sun Nov 22 21:09:09 2015) added owner w\ name: asoshnin, pass: rev518lait
+[all_owner_urls] (Sun Nov 22 21:09:33 2015) sending urls of owner asoshnin
+[...END SESSION!!...] (Sun Nov 22 21:09:33 2015) 
+[qr creator] (Sun Nov 22 21:10:40 2015) made qr code from link aHR0cHM6Ly93d3cuZ29vZ2xlLm5sL21hcHMvcGxhY2UvSW50ZXJuYXRpb25hbCtTY2hvb2wrb2YrQW1zdGVyZGFtL0A1Mi4yOTAyNTY3LDQuODUwMTY2MSwxNHovZGF0YT0hNG01ITFtMiEybTEhMXNpc2EhM20xITFzMHg0N2M2MGE5YzBjNGU0OGQ3OjB4ZDljMjY2N2VmOTdjZWQ4YQ==
+[processign url] (Sun Nov 22 21:11:01 2015) url param recieved
+[processign url] (Sun Nov 22 21:11:01 2015) longurl: https://www.google.nl/maps/place/International+School+of+Amsterdam/@52.2902567,4.8501661,14z/data=!4m5!1m2!2m1!1sisa!3m1!1s0x47c60a9c0c4e48d7:0xd9c2667ef97ced8a, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: csN1uN
+[processing url] (Sun Nov 22 21:11:01 2015) link is NOT passworded
+[ads] (Sun Nov 22 21:11:01 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 21:11:01 2015) 
+[all_owner_urls] (Sun Nov 22 21:11:14 2015) sending urls of owner asoshnin
+[...END SESSION!!...] (Sun Nov 22 21:11:14 2015) 
+[all_owner_urls] (Sun Nov 22 21:12:33 2015) sending urls of owner asoshnin
+[...END SESSION!!...] (Sun Nov 22 21:12:33 2015) 
+[processing url] (Sun Nov 22 21:12:40 2015) no url param recieved, redirecting to homepage
+[qr creator] (Sun Nov 22 21:12:52 2015) made qr code from link aHR0cHM6Ly93d3cuZ29vZ2xlLm5sL21hcHMvcGxhY2UvSW50ZXJuYXRpb25hbCtTY2hvb2wrb2YrQW1zdGVyZGFtL0A1Mi4zMTAyMDE5LDQuODA4Nzk1NywxMnovZGF0YT0hNG01ITFtMiEybTEhMXNpc2EhM20xITFzMHg0N2M2MGE5YzBjNGU0OGQ3OjB4ZDljMjY2N2VmOTdjZWQ4YQ==
+[processign url] (Sun Nov 22 21:12:59 2015) url param recieved
+[processign url] (Sun Nov 22 21:12:59 2015) longurl: https://www.google.nl/maps/place/International+School+of+Amsterdam/@52.3102019,4.8087957,12z/data=!4m5!1m2!2m1!1sisa!3m1!1s0x47c60a9c0c4e48d7:0xd9c2667ef97ced8a, password: da39a3ee5e6b4b0d3255bfef95601890afd80709, shorturl: isa
+[processing url] (Sun Nov 22 21:12:59 2015) link is NOT passworded
+[ads] (Sun Nov 22 21:12:59 2015) redirecting user
+[...END SESSION!!...] (Sun Nov 22 21:12:59 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 21:15:45 2015) 
+
+
+[***SERVER RESTARTED!!***] (Sun Nov 22 21:16:00 2015) 
+[qr creator] (Sun Nov 22 21:16:02 2015) made qr code from link https://www.google.nl/maps/place/International+School+of+Amsterdam/@52.3102019,4.8087957,12z/data=!4m5!1m2!2m1!1sisa!3m1!1s0x47c60a9c0c4e48d7:0xd9c2667ef97ced8a
+
+
+[***SERVER RESTARTED!!***] (Mon Nov 23 08:28:03 2015) 
