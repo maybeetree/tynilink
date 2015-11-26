@@ -63,13 +63,3 @@ VALUES('%s','%s','%s',1)" % (name,sha1(password).hexdigest(),email))
                 (name,password))
 
         return "created_owner"
-
-    @cherrypy.expose
-    def rmurl(self,short,redir='/owner/get_all_owner_urls'):
-        owner=cherrypy.session.get('owner_name')
-        if not owner: return 'Not allowed!'
-        cur.execute(
-            "DELETE FROM urls WHERE shorturl='%s' AND owner='%s'" % (
-                short,owner))
-        con.commit()
-        raise cherrypy.HTTPRedirect(redir)

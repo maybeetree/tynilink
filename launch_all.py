@@ -29,6 +29,7 @@ server_config={
         #'server.ssl_certificate_chain':'gd_bundle.crt'
     }
 
+
 #cherrypy.tree.mount(main.shortener(),'/',config = funcs.conf)
 #cherrypy.tree.mount(ut.utils(),'/ut',config = funcs.conf_ut)
 cherrypy.tree.mount(unstatic.unstatic(),'/display',config = conf)

@@ -3,6 +3,11 @@ import cherrypy
 from funcs import *
 
 class link:
+    def _cp_dispatch(self, vpath):
+        if len(vpath) == 1:
+            cherrypy.request.params['d'] = vpath.pop()
+        return self.index
+        
     @cherrypy.expose
     def index(self,d=None):#geturl
         '''get long url from short or homepage'''
@@ -39,7 +44,7 @@ class link:
                 cherrypy.session['link_pass'] = str(ret[1])
                 #cherrypy.session.acquire_lock()
                 
-                raise cherrypy.HTTPRedirect("/display/auth?dest=%s" % ret[2])
+                raise cherrypy.HTTPRedirect("/other/display?page=auth;dest=%s" % ret[2])
             #return str(ret)
             #raise cherrypy.HTTPRedirect("/ads?destination=%s" % longurl)
         else:
@@ -113,4 +118,14 @@ VALUES('%s','%s','%s','%s')"
         ses_log('[auth_link]', 'got url, redirecting')
         
         raise cherrypy.HTTPRedirect("/ads?destination=%s" % base64.b64encode(dest2[0]))
+
+    @cherrypy.expose
+    def rmurl(self,short,redir='/owner/get_all_owner_urls'):
+        owner=cherrypy.session.get('owner_name')
+        if not owner: return 'Not allowed!'
+        cur.execute(
+            "DELETE FROM urls WHERE shorturl='%s' AND owner='%s'" % (
+                short,owner))
+        con.commit()
+        raise cherrypy.HTTPRedirect(redir)
 

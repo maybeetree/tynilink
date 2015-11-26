@@ -15,7 +15,6 @@ import sys, re, os
 from hashlib import sha1
 from random_words import RandomWords
 
-
 import shortener_conf as cnf
 
 '''these are unexposed functions used by the shortener'''
@@ -207,14 +206,21 @@ VALUES('%s','%s','%s','%s')"
 '''
 def log_visit(ip,url,request=None):
     #return None
+    cur.execute('SELECT Id FROM urls WHERE longurl="%s"' % url)
+    urlid2 = str(cur.fetchone()[0])
+    
     info = httplib.HTTPConnection('',8082,timeout=5)
-    info.connect()
+    try:
+        info.connect()
+    except:
+        cur.execute("INSERT INTO url_views(urlid,ip,date) VALUES ('%s','%s','%s')" %
+                    (urlid2,ip,ctime()))
+        con.commit()
+        return 'Server down'
+        
     info.request('GET','/json/%s' % ip)
     #eval converts the str into a dict
     info = eval(info.getresponse().read())
-
-    cur.execute('SELECT Id FROM urls WHERE longurl="%s"' % url)
-    urlid2 = str(cur.fetchone()[0])
 
     #parse keys, values into strs with tuples (curly brackets)
     keys = str(['urlid']+info.keys()+['date']).replace('[', '(').replace(']', ')').replace("'",'')
@@ -320,9 +326,10 @@ def ut_pass_validate(message, username, password):
 #    return False
 '''
 
+
 conf = {
    '/': {
-       'tools.staticdir.root': os.path.abspath(os.getcwd())
+       'tools.staticdir.root': os.path.abspath(os.getcwd()),
        },
    '/static': {
        'tools.staticdir.on': True,

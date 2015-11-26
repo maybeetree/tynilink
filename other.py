@@ -5,7 +5,7 @@ from funcs import *
 class main:
     @cherrypy.expose
     def index(self,d = None):
-        return 'hi'
+        return '/other/display?page=homepage'
 
     @cherrypy.expose
     def getqr(self,url):
@@ -68,4 +68,6 @@ class main:
         mainpage = mainpage % tuple(kwargs.values())
 
         return mainpage
+
+            
             
